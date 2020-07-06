@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, MetaData
+from sqlalchemy import Column, Integer, String, DateTime, MetaData, func
 from sqlalchemy.ext.declarative import declarative_base
 
 metadata = MetaData()
@@ -13,6 +13,7 @@ class Request(Base):
     mobile = Column(String(15), nullable=False)
     city = Column(String, nullable=False)
     requirement = Column(String, nullable=False)
+    created_at = Column(DateTime(timezone=True), default=func.now())
 
 
 class Offer(Base):
@@ -23,3 +24,4 @@ class Offer(Base):
     mobile = Column(String(15), nullable=False)
     city = Column(String, nullable=False)
     offer = Column(String, nullable=False)
+    created_at = Column(DateTime(timezone=True), default=func.now())
