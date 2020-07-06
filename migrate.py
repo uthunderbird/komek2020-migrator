@@ -45,18 +45,18 @@ def reader(file):
 
 
 def request_mapper(row):
-    return Request(name=row[1],
-                   mobile=row[2],
-                   city=row[3],
-                   requirement=row[4],
+    return Request(name=row[1].strip(),
+                   mobile=row[2].strip(),
+                   city=row[3].strip(),
+                   requirement=row[4].strip(),
                    created_at=convert_datetime(row[0]))
 
 
 def offer_mapper(row):
-    return Offer(name=row[1],
-                 mobile=row[2],
-                 city=row[3],
-                 offer=row[4],
+    return Offer(name=row[1].strip(),
+                 mobile=row[2].strip(),
+                 city=row[3].strip(),
+                 offer=row[4].strip(),
                  created_at=convert_datetime(row[0]))
 
 
@@ -104,7 +104,6 @@ def parse(requests, offers, create_db, db_uri):
     click.echo("Migration complete!")
     click.echo(f"Requests: {session.query(Request).count()}")
     click.echo(f"Offers: {session.query(Offer).count()}")
-    click.echo(f"Last time: {session.query(Offer).first().created_at}")
 
 
 if __name__ == '__main__':
